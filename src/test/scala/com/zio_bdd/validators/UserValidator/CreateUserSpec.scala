@@ -29,12 +29,14 @@ object CreateUserSpec extends ZIOSteps[CreateUserService, Context] {
   }
 
   Then("the user must be successfully created with an email" / string / " and age " / int) { (expectedEmail: String, expectedAge: Int) =>
-    ScenarioContext.get.map(_.email).map { actualEmail =>
-      Assertions.assertTrue(actualEmail == expectedEmail, s"Expected '$actualEmail', got '$expectedEmail'")
-    }
-    ScenarioContext.get.map(_.age).map { actualAge =>
-      Assertions.assertTrue(actualAge == expectedAge, s"Expected '$actualAge', got '$expectedAge'")
-    }
+
+    for {
+      actualEmail <- ScenarioContext.get.map(_.email)
+      actualAge <- ScenarioContext.get.map(_.age)
+      _ <- Assertions.assertTrue(actualEmail == expectedEmail, s"Expected '$actualEmail', got '$expectedEmail'")
+      _ <- Assertions.assertTrue(actualAge == expectedAge, s"Expected '$actualAge', got '$expectedAge'")
+    } yield ()
+
   }
 
   override def environment: ZLayer[Any, Any, CreateUserService] =

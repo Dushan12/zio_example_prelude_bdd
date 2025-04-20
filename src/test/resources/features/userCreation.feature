@@ -5,7 +5,7 @@ Feature: User Creation
   Scenario: Create a user
     Given a user named Dushan Gajikj with email dushan.gajikj@rldatix.com and age 37
     When the user is created
-    Then the user must be successfully created with an email dushan.gajik@cognism.com and age 37
+    Then the user must be successfully created with an email dushan.gajikj@rldatix.com and age 37
 
   @negative
   Scenario: Fail to create user with invalid email
