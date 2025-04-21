@@ -16,11 +16,14 @@ object UserValidator {
   }
 
   def validate(user: User): ZIO[Any, Throwable, User] = {
-    if(user.age <= 0) {
+    if(user.age < 0) {
       ZIO.fail(Exception("Invalid age"))
     } else {
-      if(!check(user.email))
+      if(!check(user.email)) {
         ZIO.fail(Exception("Invalid email"))
+      } else if (user.name.isEmpty) {
+        ZIO.fail(Exception("Invalid name"))
+      }
       else
         ZIO.succeed(user)
     }

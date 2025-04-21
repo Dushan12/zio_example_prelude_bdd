@@ -7,7 +7,7 @@ import zio.{ZIO, ZLayer}
 trait CreateUserService {
   def create(name: String, email: String, age: Int): ZIO[Any, Throwable, User]
 }
-case class CreateUserServiceImpl(prefix: String) extends CreateUserService {
+case class CreateUserServiceImpl() extends CreateUserService {
   def create(name: String, email: String, age: Int): ZIO[Any, Throwable, User] =
     UserValidator.validate(
       User(
@@ -19,7 +19,7 @@ case class CreateUserServiceImpl(prefix: String) extends CreateUserService {
     )
 }
 
-object CreateUserService  {
-  val live: ZLayer[String, Nothing, CreateUserService] =
-    ZLayer.fromFunction(CreateUserServiceImpl(_))
+object CreateUserService {
+  val live: ZLayer[Any, Nothing, CreateUserService] =
+    ZLayer.fromZIO(ZIO.succeed(CreateUserServiceImpl()))
 }

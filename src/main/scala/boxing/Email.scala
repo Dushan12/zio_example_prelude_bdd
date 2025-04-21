@@ -1,16 +1,15 @@
 package boxing
 
-class Email(email: String) {
+import eu.timepit.refined.api.Refined
+import eu.timepit.refined.predicates.all.MatchesRegex
+import eu.timepit.refined.refineV
 
-  private val emailRegex = """^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$""".r
+type emailRegex = MatchesRegex["""^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$"""]
 
-  private def check(e: String): Boolean = e match {
-    case null => false
-    case e if e.trim.isEmpty => false
-    case e if emailRegex.findFirstMatchIn(e).isDefined => true
-    case _ => false
+class Email(email: String Refined emailRegex)
+
+object Email {
+  def make(value: String): Either[String, Email] = {
+    refineV[emailRegex](value).map(Email(_))
   }
-
-  require(check(email), "Invalid email")
-
 }

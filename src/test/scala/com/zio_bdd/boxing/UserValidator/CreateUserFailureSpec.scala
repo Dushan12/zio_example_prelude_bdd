@@ -1,9 +1,9 @@
-package com.zio_bdd.validators.UserValidator
+package com.zio_bdd.boxing.UserValidator
 
-import validators.{CreateUserService, User, UserValidator}
+import boxing.{CreateUserService, User}
 import zio.*
-import zio.bdd.core.{Assertions, Suite}
 import zio.bdd.core.step.ZIOSteps
+import zio.bdd.core.{Assertions, Suite}
 import zio.schema.{DeriveSchema, Schema}
 import zio.test.ZIOSpecDefault
 
