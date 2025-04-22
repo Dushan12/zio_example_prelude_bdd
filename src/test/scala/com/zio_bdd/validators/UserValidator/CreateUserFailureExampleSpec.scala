@@ -1,9 +1,9 @@
-package com.zio_bdd.validators.UserValidator
+/*package com.zio_bdd.validators.UserValidator
 
-import prelude.{CreateUserService, User}
+import validators.{CreateUserService, User, UserValidator}
 import zio.*
+import zio.bdd.core.step.{TableExtractor, ZIOSteps}
 import zio.bdd.core.{Assertions, Suite}
-import zio.bdd.core.step.ZIOSteps
 import zio.schema.{DeriveSchema, Schema}
 import zio.test.ZIOSpecDefault
 
@@ -22,13 +22,27 @@ import zio.test.ZIOSpecDefault
   includeTags = Array("negative"),
   logLevel = "debug"
 )
-object CreateUserFailureSpec extends ZIOSteps[CreateUserService, Context] {
-  Given("a user named " / string / " with email " / string / " and age " / string) { (name: String, email: String, ageString: String) =>
+object CreateUserFailureExampleSpec extends ZIOSteps[CreateUserService, Context] {
+  Given("a user is created with invalid data") { () =>
+    val tbl: TableExtractor[ExampleTable] = TableExtractor[ExampleTable](ExampleTable.schema)
+    for {
+      _ <- tbl.extract().map { (list, _) =>
+        list.foreach {
+          x =>
+            Console.printLine(x.age)
+        }
+      }
+    } yield ()
+
+    for  {
+      ctx <- ScenarioContext.get
+      example <- ctx.
+    } yield()
     var age = ageString.toInt;
     ScenarioContext.update(_.copy(name = name, email = email, age = age))
   }
 
-  When("the user is created") {
+  When("there is an attempt to create the user") {
     for {
       ctx <- ScenarioContext.get
       service <- ZIO.service[CreateUserService]
@@ -38,7 +52,7 @@ object CreateUserFailureSpec extends ZIOSteps[CreateUserService, Context] {
     } yield ()
   }
 
-  Then("the user creation must fail with error " / string) { (expectedErrorMessage: String) =>
+  Then("the user creation must fail with error") { (expectedErrorMessage: String) =>
     for {
       actualErrorMessage <- ScenarioContext.get.map(_.errorMessage)
       _ <- Assertions.assertEquals(actualErrorMessage, expectedErrorMessage, s"Expected '$expectedErrorMessage', got '$actualErrorMessage'")
@@ -48,4 +62,4 @@ object CreateUserFailureSpec extends ZIOSteps[CreateUserService, Context] {
 
   override def environment: ZLayer[Any, Any, CreateUserService] =
     CreateUserService.live
-}
+}*/

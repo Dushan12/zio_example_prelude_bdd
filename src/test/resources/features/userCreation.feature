@@ -24,3 +24,14 @@ Feature: User Creation
     Given a user named  with email dushan.gajikj@rldatix.com and age 37
     When the user is created
     Then the user creation must fail with error Invalid name
+#
+#  @negative
+#  Scenario: Fail to create user with invalid data
+#    Given a user is created with invalid data
+#    When there is an attempt to create the user
+#    Then the user creation must fail with error
+#    Example
+#    | email                       | name                   | age                  | error                   |
+#    | dushan.gajikjrldatix.com    | Dushan Gajikj          | 37                   | Invalid email           |
+#    | dushan.gajikj@rldatix.com   |                        | 37                   | Invalid name            |
+#    | dushan.gajikj@rldatix.com   | Dushan Gajikj          | 0                    | Invalid age             |

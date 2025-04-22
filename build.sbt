@@ -10,6 +10,7 @@ lazy val root = (project in file("."))
       "dev.zio" %% "zio" % "2.1.17",
       "io.github.etacassiopeia" %% "zio-bdd" % "0.1.0" % Test,
       "dev.zio" %% "zio-test" % "2.1.17" % Test,
+      "dev.zio" %% "zio-prelude" % "1.0.0-RC40",
       "dev.zio" %% "zio-test-sbt"       % "2.1.17" % Test,
         "eu.timepit" %% "refined"                 % "0.11.3",
         "eu.timepit" %% "refined-cats"            % "0.11.3", // optional
