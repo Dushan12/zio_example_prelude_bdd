@@ -1,11 +1,10 @@
 package com.zio_bdd.validators.UserValidator
 
-import validators.{CreateUserService, User, UserValidator}
+import com.zio_bdd.Context
+import validators.CreateUserService
 import zio.*
-import zio.bdd.core.{Assertions, Suite}
 import zio.bdd.core.step.ZIOSteps
-import zio.schema.{DeriveSchema, Schema}
-import zio.test.ZIOSpecDefault
+import zio.bdd.core.{Assertions, Suite}
 
 // Test specification
 @Suite(

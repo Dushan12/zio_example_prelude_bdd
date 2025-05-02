@@ -1,7 +1,7 @@
-package com.zio_bdd.validators.UserValidator
+package com.zio_bdd.prelude.UserValidator
 
+import prelude.CreateUserService
 import com.zio_bdd.Context
-import validators.CreateUserService
 import zio.*
 import zio.bdd.core.step.ZIOSteps
 import zio.bdd.core.{Assertions, Suite}
@@ -23,8 +23,8 @@ object CreateUserFailureExampleSpec extends ZIOSteps[CreateUserService, Context]
     for {
       ctx <- ScenarioContext.get
       service <- ZIO.service[CreateUserService]
-      createResult <- service.create(ctx.name, ctx.email, ctx.age).either
-      _ <- ScenarioContext.update(_.copy(errorMessage = createResult.left.get.getMessage))
+      createResult <- service.create(ctx.name, ctx.email, ctx.age)
+      _ <- ScenarioContext.update(_.copy(errorMessage = createResult.left.get.head))
     } yield ()
   }
 

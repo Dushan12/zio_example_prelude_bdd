@@ -1,4 +1,4 @@
-package com.zio_bdd.boxing.UserValidator
+package com.zio_bdd
 
 import zio.schema.{DeriveSchema, Schema}
 

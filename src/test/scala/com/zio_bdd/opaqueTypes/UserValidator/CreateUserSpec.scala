@@ -1,7 +1,7 @@
-package com.zio_bdd.boxing.UserValidator
+package com.zio_bdd.opaqueTypes.UserValidator
 
-import boxing.CreateUserService
 import com.zio_bdd.Context
+import opaqueTypes.CreateUserService
 import zio.*
 import zio.bdd.core.step.ZIOSteps
 import zio.bdd.core.{Assertions, Suite}

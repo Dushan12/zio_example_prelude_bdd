@@ -1,6 +1,6 @@
-package com.zio_bdd.boxing.UserValidator
+package com.zio_bdd.prelude.UserValidator
 
-import boxing.CreateUserService
+import prelude.CreateUserService
 import com.zio_bdd.Context
 import zio.*
 import zio.bdd.core.step.ZIOSteps

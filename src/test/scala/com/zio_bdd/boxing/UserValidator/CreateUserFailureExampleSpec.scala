@@ -1,6 +1,7 @@
 package com.zio_bdd.boxing.UserValidator
 
 import boxing.CreateUserService
+import com.zio_bdd.Context
 import zio.*
 import zio.bdd.core.step.ZIOSteps
 import zio.bdd.core.{Assertions, Suite}
@@ -30,7 +31,6 @@ object CreateUserFailureExampleSpec extends ZIOSteps[CreateUserService, Context]
   Then("the user creation must fail with " / string) { (expectedErrorMessage: String) =>
     for {
       actualErrorMessage <- ScenarioContext.get.map(_.errorMessage)
-      _ <- Console.printLine(expectedErrorMessage)
       _ <- Assertions.assertEquals(actualErrorMessage, expectedErrorMessage, s"Expected '$expectedErrorMessage', got '$actualErrorMessage'")
     } yield ()
 
