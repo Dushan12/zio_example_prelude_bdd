@@ -16,4 +16,4 @@ Feature: User Creation
     | email                         | name                   | age                  | error                    |
     | "dushan.gajikjrldatix.com"    | "Dushan Gajikj"        | 37                   | "Invalid email"          |
     | "dushan.gajikj@rldatix.com"   | ""                     | 37                   | "Invalid name"           |
-    | "dushan.gajikj@rldatix.com"   | "Dushan Gajikj"        | -1                    | "Invalid age"            |
+    | "dushan.gajikj@rldatix.com"   | "Dushan Gajikj"        | -1                   | "Invalid age"            |
