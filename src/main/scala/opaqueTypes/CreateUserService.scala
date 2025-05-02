@@ -12,6 +12,7 @@ trait CreateUserService {
  * Compile Time Overhead
  * The compiler should know that the data is valid
  * It does not know that the data is invalid at compile time
+ * we need to use for comprehensions for data that we know is valid
  */
 case class CreateUserServiceImpl() extends CreateUserService {
   def create(name: String, email: String, age: Int): ZIO[Any, Throwable, User] = {

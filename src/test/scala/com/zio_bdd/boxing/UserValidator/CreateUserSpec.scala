@@ -9,7 +9,7 @@ import zio.test.ZIOSpecDefault
 
 // Test specification
 @Suite(
-  featureDir = "src/test/resources/features/",
+  featureDir = "features/",
   reporters = Array("pretty", "junitxml"),
   parallelism = 2,
   includeTags = Array("positive"),
